@@ -14,6 +14,8 @@ import {
   addDoc,
   query,
   where,
+  orderBy,
+  serverTimestamp,
 } from 'firebase/firestore';
 
 // Import your web app's Firebase configuration
@@ -29,6 +31,7 @@ let user = null;
 // Database
 const db = getFirestore(app);
 const banners = collection(db, 'banners');
+let userBanners = [];
 
 // Show error message
 const showErrorMessage = (msg) => {
@@ -39,6 +42,11 @@ const showErrorMessage = (msg) => {
     msg +
     '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
   alertBox.classList.add('show');
+};
+
+// Show user banners
+const showUserBanners = () => {
+  const editBannerForm = document.getElementById('editBannerForm');
 };
 
 // Register new users
@@ -108,15 +116,19 @@ onAuthStateChanged(auth, (u) => {
     container.classList.remove('d-none');
 
     // Query banners of the current user
-    const q = query(banners, where('user', '==', user.uid));
+    const q = query(
+      banners,
+      where('user', '==', user.uid),
+      orderBy('order', 'asc')
+    );
 
     // Subscribe to banners
     onSnapshot(q, (snapshot) => {
-      let banners = [];
+      userBanners = [];
       snapshot.docs.forEach((doc) => {
-        banners.push({ ...doc.data(), id: doc.id });
+        userBanners.push({ ...doc.data(), id: doc.id });
       });
-      console.log(banners);
+      showUserBanners();
     });
 
     // Query
@@ -138,7 +150,9 @@ addBannerForm.addEventListener('submit', (e) => {
   }
   addDoc(banners, {
     user: user.uid,
+    order: userBanners.length + 1,
     text: text,
+    created: serverTimestamp(),
   })
     .then(() => {
       addBannerForm.reset();

@@ -356,6 +356,8 @@
         </div>
       </header>
       <div class="container">
+        <!-- New banner form -->
+        <h1>Add new banner:</h1>
         <form id="addBannerForm" class="row g-3 p-3">
           <div class="col">
             <input
@@ -375,39 +377,93 @@
             </div>
           </div>
         </form>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col"></div>
-          <div class="col-6">
-            <form class="form-inline">
-              <div class="form-group mb-2">
-                <label for="staticEmail2" class="sr-only">Email</label>
-                <input
-                  type="text"
-                  readonly
-                  class="form-control-plaintext"
-                  id="staticEmail2"
-                  value="email@example.com"
-                />
-              </div>
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="inputPassword2"
-                  placeholder="Password"
-                />
-              </div>
-              <button type="submit" class="btn btn-primary mb-2">
-                Confirm identity
-              </button>
-            </form>
+        <!-- Edit banners form -->
+        <h1>Current banners:</h1>
+        <form id="addBannerForm" class="row g-3 p-3">
+          <div class="row">
+            <div class="col-1">
+              <label class="form-label">Order:</label>
+              <input
+                type="number"
+                class="form-control"
+                aria-label="banner order"
+                maxlength="5"
+              />
+            </div>
+            <div class="col-2">
+              <label class="form-label">Message:</label>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="banner text"
+                maxlength="250"
+              />
+            </div>
+            <div class="col-2">
+              <label class="form-label">Style:</label>
+              <select class="form-select" aria-label="Default select example">
+                <option value="led-scroller" selected>Led Scroller</option>
+              </select>
+            </div>
+            <div class="col-1">
+              <label class="form-label">Back 1:</label>
+              <input
+                type="color"
+                class="form-control form-control-color"
+                id="exampleColorInput"
+                value="#563d7c"
+                title="Choose your color"
+              />
+            </div>
+            <div class="col-1">
+              <label class="form-label">Back 2:</label>
+              <input
+                type="color"
+                class="form-control form-control-color"
+                id="exampleColorInput"
+                value="#563d7c"
+                title="Choose your color"
+              />
+            </div>
+            <div class="col-1">
+              <label class="form-label">Color 1:</label>
+              <input
+                type="color"
+                class="form-control form-control-color"
+                id="exampleColorInput"
+                value="#563d7c"
+                title="Choose your color"
+              />
+            </div>
+            <div class="col-1">
+              <label class="form-label">Color 2:</label>
+              <input
+                type="color"
+                class="form-control form-control-color"
+                id="exampleColorInput"
+                value="#563d7c"
+                title="Choose your color"
+              />
+            </div>
+            <div class="col-1">
+              <label class="form-label">Sample:</label>
+              <<input
+                type="color"
+                class="form-control form-control-color"
+                id="exampleColorInput"
+                value="#563d7c"
+                title="Choose your color"
+              />>
+            </div>
           </div>
-          <div class="col"></div>
-        </div>
+          <div class="col">
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary mb-3">
+                Add banner
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
     <script

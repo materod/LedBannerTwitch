@@ -1,11 +1,41 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
+const pages = ['banner'];
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: pages.reduce((config, page) => {
+    config[page] = `./src/controllers/${page}.js`;
+    return config;
+  }, {}),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'js/[name].js',
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/assets/img', to: 'img' },
+        { from: 'src/assets/css', to: 'css' },
+      ],
+    }),
+  ].concat(
+    pages.map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          inject: true,
+          template: `./src/views/${page}.html`,
+          filename: `${page}.html`,
+          chunks: [page],
+        })
+    )
+  ),
   watch: true,
 };
