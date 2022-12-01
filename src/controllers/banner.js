@@ -65,6 +65,6 @@ onSnapshot(bannerRef, (snapshot) => {
     let banner = { ...snapshot.data(), id: snapshot.id };
     applyStyle(banner);
   } else {
-    console.log('Document not exists');
+    document.location = 'error404.html';
   }
 });

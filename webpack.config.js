@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const pages = ['banner'];
+const pages = ['banner', 'edit', 'error404'];
 
 module.exports = {
   mode: 'development',
