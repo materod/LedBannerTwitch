@@ -39,7 +39,6 @@ const fontFammilies = [
 ];
 
 const drawBoobles = (banner) => {
-  document.body.classList = ['bodyTextAnimation'];
   let bannerDiv = document.getElementById('placeholder');
   bannerDiv.innerHTML = '';
 
@@ -98,8 +97,45 @@ const drawBoobles = (banner) => {
   }
 };
 
+const drawColorful = (banner) => {
+  let bannerDiv = document.getElementById('placeholder');
+  bannerDiv.innerHTML = '';
+
+  let styleContainer = document.createElement('div');
+  styleContainer.classList = ['colorful-container'];
+  bannerDiv.appendChild(styleContainer);
+
+  let item = document.createElement('div');
+  item.classList = ['colorful-text'];
+  item.style.setProperty('--style-color1', banner.color1);
+  item.style.setProperty('--style-color2', banner.color2);
+  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-size', banner.size + 'px');
+  let delay = 0;
+  for (let i in banner.text) {
+    let chars = banner.text[i].split("");
+    for (let c in chars) {
+      item.innerHTML += '<span style="-webkit-animation-delay: '+ delay +'s;-moz-animation-delay: '+ delay +'s;-ms-animation-delay: '+ delay +'s; animation-delay: '+ delay +'s">' + chars[c] + '</span>';
+      delay += 0.1;
+    }
+    item.innerHTML += '<br/>';
+  }
+  styleContainer.appendChild(item);
+
+  /*item.addEventListener(
+    'animationiteration',
+    () => {
+      i++;
+      if (i >= banner.text.length) {
+        i = 0;
+      }
+      item.innerHTML = banner.text[i];
+    },
+    false
+  );*/
+};
+
 const drawHearts = (banner) => {
-  document.body.classList = ['bodyTextAnimation'];
   let bannerDiv = document.getElementById('placeholder');
   bannerDiv.innerHTML = '';
 
@@ -159,7 +195,6 @@ const drawHearts = (banner) => {
 };
 
 const drawTextAnimation = (banner) => {
-  document.body.classList = ['bodyTextAnimation'];
   let bannerDiv = document.getElementById('placeholder');
   bannerDiv.innerHTML = '';
 
@@ -197,6 +232,7 @@ const drawTextAnimation = (banner) => {
 
 const stylesMap = {
   Boobles: drawBoobles,
+  Colorful: drawColorful,
   Hearts: drawHearts,
   'Text-Animation': drawTextAnimation,
 };

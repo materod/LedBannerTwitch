@@ -28,7 +28,7 @@ body {
   height: 100%;
   left: 0px;
   top: calc(50% - var(--style-size));
-  z-index: 0;
+  z-index: 10000;
   color: var(--style-color1);
   font-family: var(--style-font);
   font-size: var(--style-size);
@@ -91,7 +91,219 @@ body {
     transform: translate(0, -1000%);
   }
 }
-
+/* COLORFUL */
+.colorful-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.colorful-text {
+  color: var(--style-color1);
+  font-size: var(--style-size);
+  font-family: var(--style-font);
+}
+.colorful-text span {
+  -webkit-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
+  -moz-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
+  -ms-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
+  animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
+}
+@-webkit-keyframes colorful-keyframes {
+  0% {
+    color: #645cd6;
+  }
+  5% {
+    color: #d6995c;
+  }
+  10% {
+    color: #d6645c;
+  }
+  15% {
+    color: #af5cd6;
+  }
+  20% {
+    color: #5cd67e;
+  }
+  25% {
+    color: #725cd6;
+  }
+  30% {
+    color: #d6915c;
+  }
+  35% {
+    color: #ce5cd6;
+  }
+  40% {
+    color: #5c8fd6;
+  }
+  45% {
+    color: #d66c5c;
+  }
+  50% {
+    color: #d65c6a;
+  }
+  55% {
+    color: #d6935c;
+  }
+  60% {
+    color: #d65c74;
+  }
+  65% {
+    color: #9f5cd6;
+  }
+  70% {
+    color: #6c5cd6;
+  }
+  75% {
+    color: #5cd6c0;
+  }
+  80% {
+    color: #5c8bd6;
+  }
+  85% {
+    color: #5cbad6;
+  }
+  90% {
+    color: #d6765c;
+  }
+  95% {
+    color: #d65cc8;
+  }
+  100% {
+    color: #725cd6;
+  }
+}
+@-moz-keyframes colorful-keyframes {
+  0% {
+    color: #645cd6;
+  }
+  5% {
+    color: #d6995c;
+  }
+  10% {
+    color: #d6645c;
+  }
+  15% {
+    color: #af5cd6;
+  }
+  20% {
+    color: #5cd67e;
+  }
+  25% {
+    color: #725cd6;
+  }
+  30% {
+    color: #d6915c;
+  }
+  35% {
+    color: #ce5cd6;
+  }
+  40% {
+    color: #5c8fd6;
+  }
+  45% {
+    color: #d66c5c;
+  }
+  50% {
+    color: #d65c6a;
+  }
+  55% {
+    color: #d6935c;
+  }
+  60% {
+    color: #d65c74;
+  }
+  65% {
+    color: #9f5cd6;
+  }
+  70% {
+    color: #6c5cd6;
+  }
+  75% {
+    color: #5cd6c0;
+  }
+  80% {
+    color: #5c8bd6;
+  }
+  85% {
+    color: #5cbad6;
+  }
+  90% {
+    color: #d6765c;
+  }
+  95% {
+    color: #d65cc8;
+  }
+  100% {
+    color: #725cd6;
+  }
+}
+@keyframes colorful-keyframes {
+  0% {
+    color: #645cd6;
+  }
+  5% {
+    color: #d6995c;
+  }
+  10% {
+    color: #d6645c;
+  }
+  15% {
+    color: #af5cd6;
+  }
+  20% {
+    color: #5cd67e;
+  }
+  25% {
+    color: #725cd6;
+  }
+  30% {
+    color: #d6915c;
+  }
+  35% {
+    color: #ce5cd6;
+  }
+  40% {
+    color: #5c8fd6;
+  }
+  45% {
+    color: #d66c5c;
+  }
+  50% {
+    color: #d65c6a;
+  }
+  55% {
+    color: #d6935c;
+  }
+  60% {
+    color: #d65c74;
+  }
+  65% {
+    color: #9f5cd6;
+  }
+  70% {
+    color: #6c5cd6;
+  }
+  75% {
+    color: #5cd6c0;
+  }
+  80% {
+    color: #5c8bd6;
+  }
+  85% {
+    color: #5cbad6;
+  }
+  90% {
+    color: #d6765c;
+  }
+  95% {
+    color: #d65cc8;
+  }
+  100% {
+    color: #725cd6;
+  }
+}
 /* HEARTS STYLE */
 .hearts-text {
   position: absolute;
@@ -181,7 +393,6 @@ body {
     transform: translate(0, -1000%) rotate(45deg);
   }
 }
-
 /* TEXT-ANIMATION STYLE */
 .textAnimation-container {
   position: fixed;
