@@ -1,3 +1,5 @@
+const fontFammilies = ['Arial', 'VT323'];
+
 const drawHearts = (banner) => {
   document.body.classList = ['bodyTextAnimation'];
   let bannerDiv = document.getElementById('placeholder');
@@ -12,6 +14,8 @@ const drawHearts = (banner) => {
   item.innerHTML = banner.text[i];
   item.classList = ['hearts-text'];
   item.style.setProperty('--style-color1', banner.color1);
+  item.style.setProperty('--style-font', banner.font);
+  item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
   // Create particles
@@ -73,23 +77,11 @@ const drawTextAnimation = (banner) => {
   let item = document.createElement('h2');
   item.innerHTML = banner.text[i];
   item.classList = ['textAnimation-text'];
-  item.style['color'] = banner.color1;
-  item.style['-webkit-animation'] =
-    'textAnimationFadeInOut ' +
-    banner.duration +
-    's ease-in 0s infinite backwards';
-  item.style['-moz-animation'] =
-    'textAnimationFadeInOut ' +
-    banner.duration +
-    's ease-in 0s infinite backwards';
-  item.style['-ms-animation'] =
-    'textAnimationFadeInOut ' +
-    banner.duration +
-    's ease-in 0s infinite backwards';
-  item.style['animation'] =
-    'textAnimationFadeInOut ' +
-    banner.duration +
-    's ease-in 0s infinite backwards';
+  item.style.setProperty('--style-color1', banner.color1);
+  item.style.setProperty('--style-color2', banner.color2);
+  item.style.setProperty('--style-duration', banner.duration + 's');
+  item.style.setProperty('--style-font', banner.font);
+  item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
   item.addEventListener(
