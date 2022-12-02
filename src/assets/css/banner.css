@@ -31,6 +31,8 @@ body {
   top: 50%;
   z-index: 1000;
   color: var(--style-color1);
+  font-family: var(--style-font);
+  font-size: var(--style-size);
 }
 .hearts-container {
   position: fixed;
@@ -40,8 +42,6 @@ body {
   height: 100%;
   z-index: 0;
   text-align: center;
-  font-family: var(--style-font);
-  font-size: var(--style-size);
 }
 .hearts-container > .particle {
   opacity: 0;

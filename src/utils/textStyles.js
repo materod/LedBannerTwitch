@@ -1,4 +1,42 @@
-const fontFammilies = ['Arial', 'VT323'];
+const fontFammilies = [
+  'Akronim',
+  'Alfa Slab One',
+  'Anton', 
+  'Arial', 
+  'Bangers',
+  'Black Ops One',
+  'Bungee Shade',
+  'Caveat', 
+  'Coda',
+  'Codystar',
+  'Comfortaa', 
+  'Courier Prime', 
+  'Creepster',
+  'Dancing Script', 
+  'Faster One',
+  'Flavors',
+  'Fredericka the Great',
+  'Fredoka One', 
+  'Indie Flower',
+  'Londrina Shadow', 
+  'Monoton',
+  'Nanum Pen Script', 
+  'Nosifer',
+  'Notable',
+  'Oswald',
+  'Permanent Marker', 
+  'Pirata One', 
+  'Press Start 2P',
+  'Rampart One',
+  'Righteous', 
+  'Rubik Moonrocks',
+  'Rye',
+  'Sacramento', 
+  'Silkscreen',
+  'Titan One',
+  'VT323',
+  'Zilla Slab Highlight'
+];
 
 const drawHearts = (banner) => {
   document.body.classList = ['bodyTextAnimation'];
@@ -14,7 +52,7 @@ const drawHearts = (banner) => {
   item.innerHTML = banner.text[i];
   item.classList = ['hearts-text'];
   item.style.setProperty('--style-color1', banner.color1);
-  item.style.setProperty('--style-font', banner.font);
+  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
   item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
@@ -80,7 +118,7 @@ const drawTextAnimation = (banner) => {
   item.style.setProperty('--style-color1', banner.color1);
   item.style.setProperty('--style-color2', banner.color2);
   item.style.setProperty('--style-duration', banner.duration + 's');
-  item.style.setProperty('--style-font', banner.font);
+  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
   item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
