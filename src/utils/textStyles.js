@@ -110,4 +110,4 @@ const getStyleNames = () => {
   return Object.keys(stylesMap);
 };
 
-export { applyStyle, getStyleNames };
+export { applyStyle, getStyleNames, fontFammilies };

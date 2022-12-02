@@ -22,6 +22,8 @@ subscribeAuth((user) => {
           color2: '#333333',
           created: serverTimestamp(),
           duration: 3,
+          font: 'Arial',
+          size: 72,
           name: text,
           style: 'Text-Animation',
           text: ['Sample text'],

@@ -5,7 +5,7 @@ import {
   updateBanner,
 } from '../utils/fireBaseUtils';
 import { getParentUrl } from '../utils/utils';
-import { getStyleNames } from '../utils/textStyles';
+import { getStyleNames, fontFammilies } from '../utils/textStyles';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -30,6 +30,19 @@ subscribeAuth((user) => {
           styleSelector.append(option);
         }
         document.getElementById('bannerDuration').value = banner.duration;
+        let fontSelector = document.getElementById('bannerFont');
+        console.log(fontSelector)
+        fontSelector.innerHTML = '';
+        for (let i in fontFammilies) {
+          let option = document.createElement('option');
+          option.value = fontFammilies[i];
+          option.innerHTML = fontFammilies[i];
+          if (fontFammilies[i] === banner.font) {
+            option.selected = true;
+          }
+          fontSelector.append(option);
+        }
+        document.getElementById('bannerSize').value = banner.size;
         document.getElementById('bannerColor1').value = banner.color1;
         document.getElementById('bannerColor2').value = banner.color2;
         document.getElementById('bannerText').value = banner.text.join('\n');
@@ -62,6 +75,8 @@ editBannerForm.addEventListener('submit', (e) => {
   let bannerName = editBannerForm.bannerName.value;
   let bannerStyle = editBannerForm.bannerStyle.value;
   let bannerDur = editBannerForm.bannerDuration.value;
+  let bannerFont = editBannerForm.bannerFont.value;
+  let bannerSize = editBannerForm.bannerSize.value;
   let bannerColor1 = editBannerForm.bannerColor1.value;
   let bannerColor2 = editBannerForm.bannerColor2.value;
   let textArray = editBannerForm.bannerText.value.split('\n');
@@ -72,6 +87,8 @@ editBannerForm.addEventListener('submit', (e) => {
       name: bannerName,
       style: bannerStyle,
       duration: bannerDur,
+      font: bannerFont,
+      size: bannerSize,
       color1: bannerColor1,
       color2: bannerColor2,
       text: textArray,
