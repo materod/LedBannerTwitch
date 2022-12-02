@@ -8,6 +8,7 @@ import { getParentUrl } from '../utils/utils';
 import { getStyleNames, fontFammilies } from '../utils/textStyles';
 
 const urlParams = new URLSearchParams(window.location.search);
+const styleNames = getStyleNames();
 
 // Check logged
 subscribeAuth((user) => {
@@ -20,11 +21,11 @@ subscribeAuth((user) => {
         document.getElementById('bannerName').value = banner.name;
         let styleSelector = document.getElementById('bannerStyle');
         styleSelector.innerHTML = '';
-        for (let i in styles) {
+        for (let i in styleNames) {
           let option = document.createElement('option');
-          option.value = styles[i];
-          option.innerHTML = styles[i];
-          if (styles[i] === banner.style) {
+          option.value = styleNames[i];
+          option.innerHTML = styleNames[i];
+          if (styleNames[i] === banner.style) {
             option.selected = true;
           }
           styleSelector.append(option);
@@ -63,9 +64,6 @@ const logoutButton = document.querySelector('#logoutBtn');
 logoutButton.addEventListener('click', () => {
   logout();
 });
-
-// Styles
-const styles = ['Hearts', 'Text-Animation'];
 
 // Update banner
 const editBannerForm = document.querySelector('#editBannerForm');

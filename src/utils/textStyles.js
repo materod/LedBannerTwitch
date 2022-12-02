@@ -38,6 +38,66 @@ const fontFammilies = [
   'Zilla Slab Highlight'
 ];
 
+const drawBoobles = (banner) => {
+  document.body.classList = ['bodyTextAnimation'];
+  let bannerDiv = document.getElementById('placeholder');
+  bannerDiv.innerHTML = '';
+
+  let styleContainer = document.createElement('div');
+  styleContainer.classList = ['boobles-container'];
+  bannerDiv.appendChild(styleContainer);
+
+  let i = 0;
+  let item = document.createElement('span');
+  item.innerHTML = banner.text[i];
+  item.classList = ['boobles-text'];
+  item.style.setProperty('--style-color1', banner.color1);
+  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-size', banner.size + 'px');
+  styleContainer.appendChild(item);
+
+  // Create particles
+  let booblesCount = (styleContainer.offsetWidth / 50) * 5;
+  for (let n = 0; n <= booblesCount; n++) {
+    let size = Math.random() * (24 - 6) + 6;
+    let delay = Math.random() * banner.duration;
+    let particle = document.createElement('span');
+    particle.classList = ['particle'];
+    particle.style.setProperty(
+      'top',
+      '50%'
+    );
+    particle.style.setProperty(
+      'left',
+      Math.random() * (styleContainer.offsetWidth / 2) +(styleContainer.offsetWidth / 4) 
+    );
+    particle.style.setProperty('width', size + 'px');
+    particle.style.setProperty('height', size + 'px');
+    particle.style.setProperty('--style-color2', banner.color2);
+    particle.style.setProperty('--style-duration', banner.duration + 's');
+    particle.style.setProperty('-webkit-animation-delay', delay + 's');
+    particle.style.setProperty('-moz-animation-delay', delay + 's');
+    particle.style.setProperty('-ms-animation-delay', delay + 's');
+    particle.style.setProperty('animation-delay', delay + 's');
+    styleContainer.appendChild(particle);
+
+    // Change text
+    if (n == 0) {
+      particle.addEventListener(
+        'animationiteration',
+        () => {
+          i++;
+          if (i >= banner.text.length) {
+            i = 0;
+          }
+          item.innerHTML = banner.text[i];
+        },
+        false
+      );
+    }
+  }
+};
+
 const drawHearts = (banner) => {
   document.body.classList = ['bodyTextAnimation'];
   let bannerDiv = document.getElementById('placeholder');
@@ -57,10 +117,10 @@ const drawHearts = (banner) => {
   styleContainer.appendChild(item);
 
   // Create particles
-  var heartcount = (styleContainer.offsetWidth / 50) * 5;
+  let heartcount = (styleContainer.offsetWidth / 50) * 5;
   for (let n = 0; n <= heartcount; n++) {
-    var size = Math.random() * (12 - 6) + 6;
-    var delay = Math.random() * banner.duration;
+    let size = Math.random() * (12 - 6) + 6;
+    let delay = Math.random() * banner.duration;
     let particle = document.createElement('span');
     particle.classList = ['particle'];
     particle.style.setProperty(
@@ -136,6 +196,7 @@ const drawTextAnimation = (banner) => {
 };
 
 const stylesMap = {
+  Boobles: drawBoobles,
   Hearts: drawHearts,
   'Text-Animation': drawTextAnimation,
 };

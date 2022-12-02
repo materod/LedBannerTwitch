@@ -4,7 +4,7 @@
   --style-color2: #333333;
   --style-duration: 3s;
   --style-font: 'VT323' ;
-  --style-size: 72px;
+  --style-size: 72rem;
 }
 
 /* Styles based on https://www.sliderrevolution.com/resources/css-text-animation/ */
@@ -22,14 +22,84 @@ body {
   position: relative;
   overflow: hidden;
 }
+/* BOOBLES STYLE */
+.boobles-text {
+  position: relative;
+  height: 100%;
+  left: 0px;
+  top: calc(50% - var(--style-size));
+  z-index: 0;
+  color: var(--style-color1);
+  font-family: var(--style-font);
+  font-size: var(--style-size);
+}
+.boobles-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  text-align: center;
+}
+.boobles-container > .particle {
+  opacity: 0;
+  position: absolute;
+  background-color: var(--style-color2);
+  border-radius: 100%;
+  -webkit-animation: bubblesKeyframes var(--style-duration) ease 0s infinite;
+  -moz-animation: bubblesKeyframes var(--style-duration) ease 0s infinite;
+  -ms-animation: bubblesKeyframes var(--style-duration) ease 0s infinite;
+  animation: bubblesKeyframes var(--style-duration) ease 0s infinite;
+}
+@-webkit-keyframes bubblesKeyframes {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, -20%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -1000%);
+  }
+}
+@-moz-keyframes bubblesKeyframes {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, -20%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -1000%);
+  }
+}
+@keyframes bubblesKeyframes {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(0, -20%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -1000%);
+  }
+}
+
 /* HEARTS STYLE */
 .hearts-text {
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0px;
-  top: 50%;
-  z-index: 1000;
+  top: calc(50% - var(--style-size));
+  z-index: 0;
   color: var(--style-color1);
   font-family: var(--style-font);
   font-size: var(--style-size);
@@ -59,7 +129,6 @@ body {
   border-radius: 100px;
   top: 0px;
   left: 0px;
-  width: 100%;
   height: 100%;
   background-color: var(--style-color2);
 }
