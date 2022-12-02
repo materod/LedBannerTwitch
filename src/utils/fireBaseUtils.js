@@ -1,5 +1,16 @@
 import { initializeApp } from 'firebase/app';
-import { doc, getFirestore, onSnapshot, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getFirestore,
+  onSnapshot,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -22,27 +33,37 @@ let currentUser = null;
 const subscribeAuth = (callback) => {
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
-    callback(currentUser);
+    if (callback) {
+      callback(currentUser);
+    }
   });
 };
 
 const registerWithEmail = (email, pass, okCallback, errCallback) => {
   createUserWithEmailAndPassword(auth, email, pass)
     .then((cred) => {
-      okCallback();
+      if (okCallback) {
+        okCallback();
+      }
     })
     .catch((err) => {
-      errCallback(err);
+      if (errCallback) {
+        errCallback(err);
+      }
     });
 };
 
 const loginWithEmail = (email, pass, okCallback, errCallback) => {
   signInWithEmailAndPassword(auth, email, pass)
     .then((cred) => {
-      okCallback();
+      if (okCallback) {
+        okCallback();
+      }
     })
     .catch((err) => {
-      errCallback(err);
+      if (errCallback) {
+        errCallback(err);
+      }
     });
 };
 
@@ -57,6 +78,61 @@ const logout = () => {
 
 // Get db
 const db = getFirestore(app);
+
+// Subscribe user banner changes
+const subscribeUserBanners = (userId, callback) => {
+  const bannersRef = collection(db, 'banners');
+  // Query banners of the current user
+  const q = query(
+    bannersRef,
+    where('user', '==', userId),
+    orderBy('created', 'asc')
+  );
+
+  // Subscribe to banners
+  onSnapshot(q, (snapshot) => {
+    let userBanners = [];
+    snapshot.docs.forEach((doc) => {
+      userBanners.push({ ...doc.data(), id: doc.id });
+    });
+    if (callback) {
+      callback(userBanners);
+    }
+  });
+};
+
+// Add new banner
+const addUserBanner = (banner, okCallback, errCallback) => {
+  const bannersRef = collection(db, 'banners');
+  addDoc(bannersRef, banner)
+    .then(() => {
+      if (okCallback) {
+        okCallback();
+      }
+    })
+    .catch((err) => {
+      if (errCallback) {
+        errCallback(err);
+      }
+    });
+};
+
+// Remove banner
+const removeUserBanner = (id, okCallback, errCallback) => {
+  const bannerRef = doc(db, 'banners', id);
+  console.log(bannerRef);
+  deleteDoc(bannerRef)
+    .then(() => {
+      if (okCallback) {
+        okCallback();
+      }
+    })
+    .catch((err) => {
+      if (errCallback) {
+        errCallback(err);
+      }
+    });
+};
 
 // Subscribe banner changes
 const subscribeBanner = (id, callback) => {
@@ -76,7 +152,9 @@ const subscribeBanner = (id, callback) => {
 const updateBanner = (id, data, callback) => {
   const bannerRef = doc(db, 'banners', id);
   updateDoc(bannerRef, data).then(() => {
-    callback();
+    if (callback) {
+      callback();
+    }
   });
 };
 
@@ -85,6 +163,9 @@ export {
   loginWithEmail,
   logout,
   subscribeAuth,
+  subscribeUserBanners,
+  addUserBanner,
+  removeUserBanner,
   subscribeBanner,
   updateBanner,
 };

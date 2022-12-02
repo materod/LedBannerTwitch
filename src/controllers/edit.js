@@ -5,6 +5,7 @@ import {
   updateBanner,
 } from '../utils/fireBaseUtils';
 import { getParentUrl } from '../utils/utils';
+import { getStyleNames } from '../utils/textStyles';
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -51,7 +52,7 @@ logoutButton.addEventListener('click', () => {
 });
 
 // Styles
-const styles = ['Text-Animation'];
+const styles = ['Hearts', 'Text-Animation'];
 
 // Update banner
 const editBannerForm = document.querySelector('#editBannerForm');
