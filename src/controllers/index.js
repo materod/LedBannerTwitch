@@ -1,48 +1,15 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import {
-  collection,
-  getFirestore,
-  onSnapshot,
-  addDoc,
-  query,
-  where,
-  orderBy,
-  serverTimestamp,
-} from 'firebase/firestore';
-
-// Import your web app's Firebase configuration
-import { firebaseConfig } from '../config/firebaseConfig';
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Authentication
-const auth = getAuth(app);
-let user = null;
+  logout,
+  subscribeAuth,
+  subscribeBanner,
+  updateBanner,
+} from '../utils/fireBaseUtils';
+import { getParentUrl } from '../utils/utils';
 
 // Database
-const db = getFirestore(app);
+/*const db = getFirestore(app);
 const banners = collection(db, 'banners');
 let userBanners = [];
-
-// Show error message
-const showErrorMessage = (msg) => {
-  const alertBox = document.getElementById('errorMessage');
-  alertBox.classList.remove('hide');
-  alertBox.innerHTML =
-    '<strong>Error!: </strong>' +
-    msg +
-    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-  alertBox.classList.add('show');
-};
 
 // Show user banners
 const showUserBanners = () => {
@@ -75,34 +42,8 @@ registerForm.addEventListener('submit', (e) => {
   }
 });
 
-// Login
-const loginForm = document.querySelector('#loginForm');
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
 
-  const email = loginForm.loginName.value;
-  const pass = loginForm.loginPassword.value;
 
-  signInWithEmailAndPassword(auth, email, pass)
-    .then((cred) => {
-      loginForm.loginPassword.classList.add('is-valid');
-      loginForm.reset();
-    })
-    .catch((err) => {
-      showErrorMessage(err.message);
-      loginForm.loginPassword.classList.add('is-invalid');
-    });
-});
-
-// Logout
-const logoutButton = document.querySelector('#logoutBtn');
-logoutButton.addEventListener('click', () => {
-  signOut(auth)
-    .then(() => {})
-    .catch((err) => {
-      showErrorMessage(err.message);
-    });
-});
 
 // Auth changes
 onAuthStateChanged(auth, (u) => {
@@ -160,4 +101,4 @@ addBannerForm.addEventListener('submit', (e) => {
     .catch((err) => {
       showErrorMessage(err.message);
     });
-});
+});*/

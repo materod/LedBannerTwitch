@@ -19,6 +19,12 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.ico" />
   </head>
   <body>
+    <!-- ALERT BOX-->
+    <div
+    id="errorMessage"
+    class="alert alert-danger fade hide"
+    role="alert"
+  ></div>
     <!-- Form to edit content -->
     <div id="editContent">
       <header class="p-3 bg-dark text-white">
@@ -28,7 +34,7 @@
           >
             <!-- Logo -->
             <a
-              href="/"
+              href="index.html"
               class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
             >
               <img
@@ -119,6 +125,5 @@
     <section id="previewContent">
       <iframe id="previewFrame" style="width: 100%; min-height: 300px;"></iframe>
     </section>
-    <script src="js/edit.js"></script>
   </body>
 </html>

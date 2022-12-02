@@ -1,13 +1,4 @@
-import { initializeApp } from 'firebase/app';
-// Import your web app's Firebase configuration
-import { firebaseConfig } from '../../config/firebaseConfig';
-import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Get db
-const db = getFirestore(app);
+import { subscribeBanner } from '../utils/fireBaseUtils';
 
 const drawTextAnimation = (textArray, color1, duration) => {
   document.body.classList = ['bodyTextAnimation'];
@@ -59,10 +50,8 @@ const applyStyle = (banner) => {
 
 // Get banner
 const urlParams = new URLSearchParams(window.location.search);
-const bannerRef = doc(db, 'banners', urlParams.get('id'));
-onSnapshot(bannerRef, (snapshot) => {
-  if (snapshot.exists()) {
-    let banner = { ...snapshot.data(), id: snapshot.id };
+subscribeBanner(urlParams.get('id'), (banner) => {
+  if (banner) {
     applyStyle(banner);
   } else {
     document.location = 'error404.html';
