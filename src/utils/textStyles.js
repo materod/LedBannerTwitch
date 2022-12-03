@@ -121,18 +121,6 @@ const drawColorful = (banner) => {
     item.innerHTML += '<br/>';
   }
   styleContainer.appendChild(item);
-
-  /*item.addEventListener(
-    'animationiteration',
-    () => {
-      i++;
-      if (i >= banner.text.length) {
-        i = 0;
-      }
-      item.innerHTML = banner.text[i];
-    },
-    false
-  );*/
 };
 
 const drawHearts = (banner) => {
@@ -194,6 +182,65 @@ const drawHearts = (banner) => {
   }
 };
 
+const drawRotating = (banner) => {
+  let bannerDiv = document.getElementById('placeholder');
+  bannerDiv.innerHTML = '';
+
+  let styleContainer = document.createElement('div');
+  styleContainer.classList = ['rotating-container'];
+  bannerDiv.appendChild(styleContainer);
+
+  let textContainer = document.createElement('p');
+  textContainer.classList = ['rotating-text'];
+  textContainer.style.setProperty('--style-color1', banner.color1);
+  textContainer.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  textContainer.style.setProperty('--style-size', banner.size + 'px');
+  textContainer.style.setProperty('--style-duration', banner.duration + 's');
+  styleContainer.appendChild(textContainer);
+
+  let delay=0;
+  let dur = parseFloat(banner.duration);
+  let lastLetter = null;
+  for (let i in banner.text) {
+    let wordContainer = document.createElement('span');
+    wordContainer.classList = ['rotating-word'];
+    textContainer.appendChild(wordContainer);
+
+    let chars = banner.text[i].split("");
+    let delayOut = dur * chars.length;
+    for (let c in chars) {
+      let letterContainer = document.createElement('span');
+      letterContainer.classList = ['rotating-letter'];
+      letterContainer.style.setProperty('--delay-in', delay + 's');
+      letterContainer.style.setProperty('--delay-out', (delayOut + delay) + 's');
+      if (chars[c] == " ") {
+        letterContainer.style.setProperty('min-width', banner.size / 3 + 'px');
+      }
+      letterContainer.innerHTML = chars[c];
+      wordContainer.appendChild(letterContainer);
+      lastLetter = letterContainer;
+      if (c < chars.length - 1) {
+        delay+=dur / 2.0;
+      }
+    }
+    delay+=delayOut;
+  }
+
+  // Replays at end of last animation
+  lastLetter.addEventListener(
+    'animationend',
+    (ev) => {
+      if (ev.animationName == "rotation-out-keyframes") {
+        document.getAnimations().forEach((animation) => {
+          animation.play();
+        });
+      }
+      
+    },
+    false
+  );
+}
+
 const drawTextAnimation = (banner) => {
   let bannerDiv = document.getElementById('placeholder');
   bannerDiv.innerHTML = '';
@@ -234,6 +281,7 @@ const stylesMap = {
   Boobles: drawBoobles,
   Colorful: drawColorful,
   Hearts: drawHearts,
+  Rotating: drawRotating,
   'Text-Animation': drawTextAnimation,
 };
 
