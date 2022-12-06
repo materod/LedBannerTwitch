@@ -1,41 +1,41 @@
 const fontFammilies = [
   'Akronim',
   'Alfa Slab One',
-  'Anton', 
-  'Arial', 
+  'Anton',
+  'Arial',
   'Bangers',
   'Black Ops One',
   'Bungee Shade',
-  'Caveat', 
+  'Caveat',
   'Coda',
   'Codystar',
-  'Comfortaa', 
-  'Courier Prime', 
+  'Comfortaa',
+  'Courier Prime',
   'Creepster',
-  'Dancing Script', 
+  'Dancing Script',
   'Faster One',
   'Flavors',
   'Fredericka the Great',
-  'Fredoka One', 
+  'Fredoka One',
   'Indie Flower',
-  'Londrina Shadow', 
+  'Londrina Shadow',
   'Monoton',
-  'Nanum Pen Script', 
+  'Nanum Pen Script',
   'Nosifer',
   'Notable',
   'Oswald',
-  'Permanent Marker', 
-  'Pirata One', 
+  'Permanent Marker',
+  'Pirata One',
   'Press Start 2P',
   'Rampart One',
-  'Righteous', 
+  'Righteous',
   'Rubik Moonrocks',
   'Rye',
-  'Sacramento', 
+  'Sacramento',
   'Silkscreen',
   'Titan One',
   'VT323',
-  'Zilla Slab Highlight'
+  'Zilla Slab Highlight',
 ];
 
 const drawBoobles = (banner) => {
@@ -51,7 +51,7 @@ const drawBoobles = (banner) => {
   item.innerHTML = banner.text[i];
   item.classList = ['boobles-text'];
   item.style.setProperty('--style-color1', banner.color1);
-  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-font', "'" + banner.font + "'");
   item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
@@ -62,13 +62,11 @@ const drawBoobles = (banner) => {
     let delay = Math.random() * banner.duration;
     let particle = document.createElement('span');
     particle.classList = ['particle'];
-    particle.style.setProperty(
-      'top',
-      '50%'
-    );
+    particle.style.setProperty('top', '50%');
     particle.style.setProperty(
       'left',
-      Math.random() * (styleContainer.offsetWidth / 2) +(styleContainer.offsetWidth / 4) 
+      Math.random() * (styleContainer.offsetWidth / 2) +
+        styleContainer.offsetWidth / 4
     );
     particle.style.setProperty('width', size + 'px');
     particle.style.setProperty('height', size + 'px');
@@ -109,16 +107,48 @@ const drawColorful = (banner) => {
   item.classList = ['colorful-text'];
   item.style.setProperty('--style-color1', banner.color1);
   item.style.setProperty('--style-color2', banner.color2);
-  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-font', "'" + banner.font + "'");
   item.style.setProperty('--style-size', banner.size + 'px');
   let delay = 0;
   for (let i in banner.text) {
-    let chars = banner.text[i].split("");
+    let chars = banner.text[i].split('');
     for (let c in chars) {
-      item.innerHTML += '<span style="-webkit-animation-delay: '+ delay +'s;-moz-animation-delay: '+ delay +'s;-ms-animation-delay: '+ delay +'s; animation-delay: '+ delay +'s">' + chars[c] + '</span>';
+      item.innerHTML +=
+        '<span style="-webkit-animation-delay: ' +
+        delay +
+        's;-moz-animation-delay: ' +
+        delay +
+        's;-ms-animation-delay: ' +
+        delay +
+        's; animation-delay: ' +
+        delay +
+        's">' +
+        chars[c] +
+        '</span>';
       delay += 0.1;
     }
     item.innerHTML += '<br/>';
+  }
+  styleContainer.appendChild(item);
+};
+
+const drawFlowing = (banner) => {
+  let bannerDiv = document.getElementById('placeholder');
+  bannerDiv.innerHTML = '';
+
+  let styleContainer = document.createElement('div');
+  styleContainer.classList = ['flowing-container'];
+  bannerDiv.appendChild(styleContainer);
+
+  let item = document.createElement('p');
+  item.classList = ['flowing-text'];
+  item.style.setProperty('--style-color1', banner.color1);
+  item.style.setProperty('--style-color2', banner.color2);
+  item.style.setProperty('--style-font', "'" + banner.font + "'");
+  item.style.setProperty('--style-size', banner.size + 'px');
+  item.style.setProperty('--style-duration', banner.duration + 's');
+  for (let i in banner.text) {
+    item.innerHTML += banner.text[i] + '   ';
   }
   styleContainer.appendChild(item);
 };
@@ -136,7 +166,7 @@ const drawHearts = (banner) => {
   item.innerHTML = banner.text[i];
   item.classList = ['hearts-text'];
   item.style.setProperty('--style-color1', banner.color1);
-  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-font', "'" + banner.font + "'");
   item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
@@ -193,12 +223,12 @@ const drawRotating = (banner) => {
   let textContainer = document.createElement('p');
   textContainer.classList = ['rotating-text'];
   textContainer.style.setProperty('--style-color1', banner.color1);
-  textContainer.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  textContainer.style.setProperty('--style-font', "'" + banner.font + "'");
   textContainer.style.setProperty('--style-size', banner.size + 'px');
   textContainer.style.setProperty('--style-duration', banner.duration + 's');
   styleContainer.appendChild(textContainer);
 
-  let delay=0;
+  let delay = 0;
   let dur = parseFloat(banner.duration);
   let lastLetter = null;
   for (let i in banner.text) {
@@ -206,40 +236,39 @@ const drawRotating = (banner) => {
     wordContainer.classList = ['rotating-word'];
     textContainer.appendChild(wordContainer);
 
-    let chars = banner.text[i].split("");
+    let chars = banner.text[i].split('');
     let delayOut = dur * chars.length;
     for (let c in chars) {
       let letterContainer = document.createElement('span');
       letterContainer.classList = ['rotating-letter'];
       letterContainer.style.setProperty('--delay-in', delay + 's');
-      letterContainer.style.setProperty('--delay-out', (delayOut + delay) + 's');
-      if (chars[c] == " ") {
+      letterContainer.style.setProperty('--delay-out', delayOut + delay + 's');
+      if (chars[c] == ' ') {
         letterContainer.style.setProperty('min-width', banner.size / 3 + 'px');
       }
       letterContainer.innerHTML = chars[c];
       wordContainer.appendChild(letterContainer);
       lastLetter = letterContainer;
       if (c < chars.length - 1) {
-        delay+=dur / 2.0;
+        delay += dur / 2.0;
       }
     }
-    delay+=delayOut;
+    delay += delayOut;
   }
 
   // Replays at end of last animation
   lastLetter.addEventListener(
     'animationend',
     (ev) => {
-      if (ev.animationName == "rotation-out-keyframes") {
+      if (ev.animationName == 'rotation-out-keyframes') {
         document.getAnimations().forEach((animation) => {
           animation.play();
         });
       }
-      
     },
     false
   );
-}
+};
 
 const drawTextAnimation = (banner) => {
   let bannerDiv = document.getElementById('placeholder');
@@ -260,7 +289,7 @@ const drawTextAnimation = (banner) => {
   item.style.setProperty('--style-color1', banner.color1);
   item.style.setProperty('--style-color2', banner.color2);
   item.style.setProperty('--style-duration', banner.duration + 's');
-  item.style.setProperty('--style-font', '\'' + banner.font + '\'');
+  item.style.setProperty('--style-font', "'" + banner.font + "'");
   item.style.setProperty('--style-size', banner.size + 'px');
   styleContainer.appendChild(item);
 
@@ -280,6 +309,7 @@ const drawTextAnimation = (banner) => {
 const stylesMap = {
   Boobles: drawBoobles,
   Colorful: drawColorful,
+  Flowing: drawFlowing,
   Hearts: drawHearts,
   Rotating: drawRotating,
   'Text-Animation': drawTextAnimation,

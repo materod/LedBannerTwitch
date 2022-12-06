@@ -3,7 +3,7 @@
   --style-color1: #cccccc;
   --style-color2: #333333;
   --style-duration: 3s;
-  --style-font: 'VT323' ;
+  --style-font: 'VT323';
   --style-size: 72rem;
 }
 
@@ -104,10 +104,14 @@ body {
   font-family: var(--style-font);
 }
 .colorful-text span {
-  -webkit-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
-  -moz-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
-  -ms-animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
-  animation: colorful-keyframes var(--style-duration) alternate infinite forwards;
+  -webkit-animation: colorful-keyframes var(--style-duration) alternate infinite
+    forwards;
+  -moz-animation: colorful-keyframes var(--style-duration) alternate infinite
+    forwards;
+  -ms-animation: colorful-keyframes var(--style-duration) alternate infinite
+    forwards;
+  animation: colorful-keyframes var(--style-duration) alternate infinite
+    forwards;
 }
 @-webkit-keyframes colorful-keyframes {
   0% {
@@ -304,6 +308,50 @@ body {
     color: #725cd6;
   }
 }
+/* FLOWING STYLE */
+.flowing-container {
+  position: relative;
+  top: 50%;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.flowing-text {
+  color: var(--style-color1);
+  font-family: var(--style-font);
+  font-size: var(--style-size);
+  padding-left: 100%;
+  display: inline-block;
+  -webkit-animation: flowingKeyframes var(--style-duration) linear infinite;
+  -moz-animation: flowingKeyframes var(--style-duration) linear infinite;
+  -ms-animation: flowingKeyframes var(--style-duration) linear infinite;
+  animation: flowingKeyframes var(--style-duration) linear infinite;
+}
+@keyframes -webkit-flowingKeyframes {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+@keyframes -moz-flowingKeyframes {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+@keyframes flowingKeyframes {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
 /* HEARTS STYLE */
 .hearts-text {
   position: absolute;
@@ -419,33 +467,36 @@ body {
   opacity: 0;
   transform: translateZ(calc(var(--style-size) / 2));
   transform-origin: 50% 50% calc(var(--style-size) / 2);
-  animation: rotation-in-keyframes var(--style-duration) linear var(--delay-in) forwards, rotation-out-keyframes var(--style-duration) linear var(--delay-out) forwards;
+  animation: rotation-in-keyframes var(--style-duration) linear var(--delay-in)
+      forwards,
+    rotation-out-keyframes var(--style-duration) linear var(--delay-out)
+      forwards;
 }
 @keyframes rotation-in-keyframes {
   0% {
-    transform:rotateX(-90deg); 
+    transform: rotateX(-90deg);
     opacity: 0;
   }
   1% {
-    transform:rotateX(-90deg); 
+    transform: rotateX(-90deg);
     opacity: 1;
   }
   100% {
-    transform:rotateX(0deg); 
+    transform: rotateX(0deg);
     opacity: 1;
   }
 }
 @keyframes rotation-out-keyframes {
   0% {
-    transform:rotateX(0deg); 
+    transform: rotateX(0deg);
     opacity: 1;
   }
   99% {
-    transform:rotateX(90deg); 
+    transform: rotateX(90deg);
     opacity: 1;
   }
   100% {
-    transform:rotateX(90deg); 
+    transform: rotateX(90deg);
     opacity: 0;
   }
 }
@@ -512,10 +563,14 @@ body {
   width: 100%;
   text-align: center;
   opacity: 0;
-  -webkit-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s infinite backwards;
-  -moz-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s infinite backwards;
-  -ms-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s infinite backwards;
-  animation: textAnimationFadeInOut var(--style-duration) ease-in 0s infinite backwards;
+  -webkit-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s
+    infinite backwards;
+  -moz-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s
+    infinite backwards;
+  -ms-animation: textAnimationFadeInOut var(--style-duration) ease-in 0s
+    infinite backwards;
+  animation: textAnimationFadeInOut var(--style-duration) ease-in 0s infinite
+    backwards;
 }
 @-webkit-keyframes textAnimationFadeInOut {
   0% {
