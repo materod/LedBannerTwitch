@@ -17,7 +17,7 @@ subscribeAuth((user) => {
     subscribeBanner(urlParams.get('id'), (banner) => {
       if (banner) {
         // Editor
-        document.getElementById('bannerUrl').value = bannerUrl + banner.id;
+        document.getElementById('bannerUrl').value = bannerUrl;
         document.getElementById('bannerName').value = banner.name;
         let styleSelector = document.getElementById('bannerStyle');
         styleSelector.innerHTML = '';
@@ -32,7 +32,7 @@ subscribeAuth((user) => {
         }
         document.getElementById('bannerDuration').value = banner.duration;
         let fontSelector = document.getElementById('bannerFont');
-        console.log(fontSelector)
+        console.log(fontSelector);
         fontSelector.innerHTML = '';
         for (let i in fontFammilies) {
           let option = document.createElement('option');
