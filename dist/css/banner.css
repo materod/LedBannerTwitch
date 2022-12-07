@@ -310,9 +310,9 @@ body {
 }
 /* FLOWING STYLE */
 .flowing-container {
-  position: relative;
-  top: 50%;
+  position: absolute;
   width: 100%;
+  transform: translateY(50%);
   white-space: nowrap;
   overflow: hidden;
   box-sizing: border-box;
@@ -330,26 +330,26 @@ body {
 }
 @keyframes -webkit-flowingKeyframes {
   0% {
-    transform: translate(0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate(-100%, 0);
+    transform: translateX(-100%);
   }
 }
 @keyframes -moz-flowingKeyframes {
   0% {
-    transform: translate(0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate(-100%, 0);
+    transform: translateX(-100%);
   }
 }
 @keyframes flowingKeyframes {
   0% {
-    transform: translate(0, 0);
+    transform: translateX(0);
   }
   100% {
-    transform: translate(-100%, 0);
+    transform: translateX(-100%);
   }
 }
 /* HEARTS STYLE */
