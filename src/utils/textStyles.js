@@ -316,6 +316,10 @@ const stylesMap = {
 };
 
 const applyStyle = (banner) => {
+  // Update background
+  document.body.style.setProperty('background-color', banner.backColor);
+  document.body.style.setProperty('opacity', banner.backAlpha);
+  // Update banner
   stylesMap[banner.style](banner);
 };
 

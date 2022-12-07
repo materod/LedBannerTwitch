@@ -46,6 +46,8 @@ subscribeAuth((user) => {
         document.getElementById('bannerSize').value = banner.size;
         document.getElementById('bannerColor1').value = banner.color1;
         document.getElementById('bannerColor2').value = banner.color2;
+        document.getElementById('bannerBackColor').value = banner.backColor;
+        document.getElementById('bannerBackAlpha').value = banner.backAlpha;
         document.getElementById('bannerText').value = banner.text.join('\n');
 
         // Preview
@@ -77,6 +79,8 @@ editBannerForm.addEventListener('submit', (e) => {
   let bannerSize = editBannerForm.bannerSize.value;
   let bannerColor1 = editBannerForm.bannerColor1.value;
   let bannerColor2 = editBannerForm.bannerColor2.value;
+  let bannerBackColor = editBannerForm.bannerBackColor.value;
+  let bannerBackAlpha = editBannerForm.bannerBackAlpha.value;
   let textArray = editBannerForm.bannerText.value.split('\n');
 
   updateBanner(
@@ -89,6 +93,8 @@ editBannerForm.addEventListener('submit', (e) => {
       size: bannerSize,
       color1: bannerColor1,
       color2: bannerColor2,
+      backColor: bannerBackColor,
+      backAlpha: bannerBackAlpha,
       text: textArray,
     },
     () => {

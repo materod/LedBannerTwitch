@@ -18,8 +18,10 @@ subscribeAuth((user) => {
       let text = addBannerForm.newBannerText.value;
       if (text) {
         let banner = {
-          color1: '#CCCCCC',
-          color2: '#333333',
+          backAlpha: 1.0,
+          backColor: '#000000',
+          color1: '#FFFFFF',
+          color2: '#CCCCCC',
           created: serverTimestamp(),
           duration: 3,
           font: 'Arial',
